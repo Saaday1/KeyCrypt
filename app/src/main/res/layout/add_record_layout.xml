@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@drawable/round_corner_for_popups">
+
+    <GridLayout
+        android:id="@+id/iconGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="2"
+        android:padding="16dp">
+
+        <!-- Icon 1 -->
+        <ImageView
+            android:id="@+id/iconFacebook"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:src="@drawable/facebook"
+            android:contentDescription="Icon 1"
+            android:padding="10dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerInside" />
+
+        <!-- Icon 2 -->
+        <ImageView
+            android:id="@+id/iconInstagram"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:src="@drawable/instagram"
+            android:contentDescription="Icon 2"
+            android:padding="10dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerInside" />
+
+        <!-- Icon 3 -->
+        <ImageView
+            android:id="@+id/iconTiktok"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:src="@drawable/tik_tok"
+            android:contentDescription="Icon 3"
+            android:padding="10dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerInside" />
+
+        <!-- Icon 4 -->
+        <ImageView
+            android:id="@+id/iconLinkedin"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:src="@drawable/linkedin"
+            android:contentDescription="Icon 4"
+            android:padding="10dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerInside" />
+
+        <!-- Icon 5 -->
+        <ImageView
+            android:id="@+id/iconGithub"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:src="@drawable/github"
+            android:contentDescription="Icon 5"
+            android:padding="10dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerInside" />
+
+        <!-- Icon 6 -->
+        <ImageView
+            android:id="@+id/iconTwitter"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:src="@drawable/twitter"
+            android:contentDescription="Icon 6"
+            android:padding="10dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerInside" />
+
+    </GridLayout>
+
+
+
+
+</RelativeLayout>
+
+

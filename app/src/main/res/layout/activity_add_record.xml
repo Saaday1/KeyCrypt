@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@drawable/round_corner_for_popups">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/PasswordtitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add New Password"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:padding="16dp" />
+
+    <LinearLayout
+        android:id="@+id/passwordLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/PasswordtitleTextView"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/password_record_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Icon -->
+        <ImageView
+            android:id="@+id/iconImageView"
+            android:layout_width="74dp"
+            android:layout_height="74dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/list_item"
+            android:contentDescription="@string/icon_content_description"
+            android:padding="10dp"
+            android:src="@drawable/ic_google" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Platform Title"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Email -->
+            <TextView
+                android:id="@+id/emailTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="email@example.com"
+                android:textColor="@color/secondary"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Password Title Input -->
+    <EditText
+        android:id="@+id/passwordTitleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter password title"
+        android:padding="16dp"
+        android:inputType="text"
+        android:layout_marginBottom="16dp"
+        android:textColorHint="@color/primary"
+        android:background="@drawable/edit_text_bg"
+        android:layout_below="@id/passwordLayout" />
+
+    <!-- Username Input -->
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter username"
+        android:textColorHint="@color/primary"
+        android:background="@drawable/edit_text_bg"
+        android:layout_marginBottom="16dp"
+        android:padding="16dp"
+        android:inputType="text"
+        android:layout_below="@id/passwordTitleEditText" />
+
+
+    <!-- Password Input -->
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:textColorHint="@color/primary"
+        android:layout_height="wrap_content"
+        android:hint="Enter password"
+        android:background="@drawable/edit_text_bg"
+        android:padding="16dp"
+        android:inputType="textPassword"
+        android:layout_below="@id/usernameEditText" />
+
+    <Button
+        android:id="@+id/iconSelectionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/original_button"
+        android:elevation="4dp"
+        android:text="Select icon"
+        android:textSize="18dp"/>
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iconSelectionButton"
+        android:layout_marginTop="16dp"
+        android:text="Save"
+        android:background="@drawable/original_button"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+</RelativeLayout>
+

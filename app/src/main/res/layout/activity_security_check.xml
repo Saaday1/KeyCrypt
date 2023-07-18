@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Top bar -->
+    <RelativeLayout
+        android:id="@+id/topBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_centerHorizontal="true">
+        <!-- Title -->
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Security Check"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"/>
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
+
+    <!-- Security score section -->
+    <RelativeLayout
+        android:id="@+id/securityScoreLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBarLayout"
+        android:background="@drawable/gradient_bg"
+        android:layout_margin="16dp"
+        android:padding="26dp">
+
+        <TextView
+            android:id="@+id/securityScoreTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Security Score"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/white" />
+
+        <!-- Security score value -->
+        <TextView
+            android:id="@+id/securityScoreValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="80"
+            android:textSize="48dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_below="@id/securityScoreTextView"/>
+
+        <!-- Security score progress bar -->
+        <ProgressBar
+            android:id="@+id/securityScoreProgressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_below="@id/securityScoreValueTextView"
+            android:layout_marginTop="8dp"
+            android:progressDrawable="@drawable/progress_bar_horizontal"
+            android:progress="80" />
+
+    </RelativeLayout>
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/passwordsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/securityScoreLayout"
+        android:padding="16dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/password_item_layout" />
+
+    <!-- Bottom navigation bar -->
+    <!-- ... (The code you provided) ... -->
+
+    <!-- Floating button with shadow -->
+    <!-- ... (The code you provided) ... -->
+
+</RelativeLayout>

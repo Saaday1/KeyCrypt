@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Secondary text: Secure passwords from anywhere -->
+    <TextView
+        android:id="@+id/startForFreeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Secure passwords from anywhere"
+        android:textSize="18dp"
+        android:layout_marginTop="40dp"
+        android:textColor="@android:color/darker_gray" />
+
+    <!-- Title: Log in to KeyCypher -->
+    <TextView
+        android:id="@+id/signUpTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startForFreeTextView"
+        android:text="Log in to KeyCypher"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/primary" />
+
+    <!-- "Not a member?" text and "Sign up" button -->
+    <RelativeLayout
+        android:id="@+id/alreadyMemberLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signUpTitleTextView"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/alreadyMemberTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Not a member?  "
+            android:textSize="16dp"
+            android:textColor="@color/secondary"
+            android:layout_centerVertical="true" />
+
+        <Button
+            android:id="@+id/signUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign up"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/secondary_ripple"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/alreadyMemberTextView" />
+    </RelativeLayout>
+
+    <!-- Email EditText -->
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailTitleTextView"
+        android:background="@drawable/edit_text_bg"
+        android:padding="26dp"
+        android:layout_marginTop="10dp"
+        android:hint="name@mail.com"
+        android:textSize="16sp"
+        android:drawableRight="@drawable/baseline_alternate_email_24"
+        android:textColorHint="@color/primary"
+        android:inputType="textEmailAddress" />
+
+    <!-- Password EditText -->
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordTitleTextView"
+        android:background="@drawable/edit_text_bg"
+        android:padding="26dp"
+        android:layout_marginTop="10dp"
+        android:hint="8 characters, 1 Special"
+        android:drawableRight="@drawable/baseline_password_24"
+        android:textSize="16sp"
+        android:textColorHint="@color/primary"
+        android:inputType="textPassword" />
+
+    <!-- Email title -->
+    <TextView
+        android:id="@+id/emailTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/alreadyMemberLayout"
+        android:layout_marginTop="20dp"
+        android:text="Email"
+        android:textStyle="bold"
+        android:textSize="24sp" />
+
+    <!-- Password title -->
+    <TextView
+        android:id="@+id/passwordTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailEditText"
+        android:layout_marginTop="10dp"
+        android:text="Password"
+        android:textStyle="bold"
+        android:textSize="24sp" />
+
+    <!-- Log In button -->
+    <Button
+        android:id="@+id/logInButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordEditText"
+        android:layout_marginTop="52dp"
+        android:text="Log In"
+        android:padding="15dp"
+        android:background="@drawable/original_button"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <!-- "- OR -" text -->
+<!--    <TextView-->
+<!--        android:id="@+id/orTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/logInButton"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:text="-  OR  -"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textColor="@color/secondary"-->
+<!--        android:layout_marginTop="10dp" />-->
+
+    <!-- Sign In with Google button -->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/googleSignInLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/orTextView"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:background="@drawable/google_button_bg"-->
+<!--        android:gravity="center"-->
+<!--        android:padding="10dp">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/googleSignInButton"-->
+<!--            android:layout_width="32dp"-->
+<!--            android:layout_height="32dp"-->
+<!--            android:src="@drawable/google"-->
+<!--            android:contentDescription="Google Icon" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/googleSignInText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Sign In with Google"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@android:color/white"-->
+<!--            android:layout_marginStart="16dp" />-->
+
+<!--    </LinearLayout>-->
+
+</RelativeLayout>

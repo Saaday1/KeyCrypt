@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
+
+
+    <!-- Secondary text: Start for free -->
+    <TextView
+        android:id="@+id/startForFreeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start for free"
+        android:textSize="18dp"
+        android:layout_marginTop="40dp"
+        android:textColor="@android:color/darker_gray" />
+
+    <!-- Title: Sign up to KeyCypher -->
+    <TextView
+        android:id="@+id/signUpTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startForFreeTextView"
+        android:text="Sign up to KeyCypher!"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/primary" />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signUpTitleTextView"
+        android:id="@+id/alreadyMember"
+        android:layout_marginTop="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        >
+        <!-- "Already a member?" text -->
+        <TextView
+            android:id="@+id/alreadyMemberTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already a member?  "
+            android:textSize="16dp"
+            android:textColor="@color/secondary"
+            android:layout_centerVertical="true"/>
+
+
+        <Button
+            android:id="@+id/signUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign in"
+            android:textSize="16dp"
+            android:background="@drawable/secondary_ripple"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/alreadyMemberTextView" />
+    </RelativeLayout>
+
+
+
+
+    <!-- Email EditText -->
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailTitleTextView"
+        android:background="@drawable/edit_text_bg"
+        android:padding="26dp"
+        android:layout_marginTop="10dp"
+        android:drawableRight="@drawable/baseline_alternate_email_24"
+        android:hint="name@mail.com"
+        android:textSize="16sp"
+        android:textColorHint="@color/primary"
+        android:inputType="textEmailAddress" />
+
+    <!-- Password EditText -->
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordTitleTextView"
+        android:background="@drawable/edit_text_bg"
+        android:padding="26dp"
+        android:layout_marginTop="10dp"
+        android:hint="8 characters, 1 Special"
+        android:textSize="16sp"
+        android:drawableRight="@drawable/baseline_password_24"
+        android:textColorHint="@color/primary"
+        android:inputType="textPassword" />
+
+    <!-- Email title -->
+    <TextView
+        android:id="@+id/emailTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/alreadyMember"
+        android:layout_marginTop="36dp"
+        android:text="Email"
+        android:textStyle="bold"
+        android:textSize="24dp" />
+
+    <!-- Password title -->
+    <TextView
+        android:id="@+id/passwordTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/emailEditText"
+        android:text="Password"
+        android:textStyle="bold"
+        android:textSize="24dp" />
+
+    <!-- Create Account button -->
+    <Button
+        android:id="@+id/createAccountButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordEditText"
+        android:layout_marginTop="52dp"
+        android:text="Create an Account"
+        android:background="@drawable/original_button"
+        android:padding="15dp"
+        android:textSize="16dp" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/txtOr"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="-  OR  -"-->
+<!--        android:layout_below="@id/createAccountButton"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:textSize="18dp"-->
+<!--        android:textColor="@color/secondary"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        />-->
+
+    <!-- Signup with Google button -->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/googleSignUpLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/txtOr"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:background="@drawable/google_button_bg"-->
+<!--        android:gravity="center"-->
+<!--        android:padding="10dp">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/googleSignUpButton"-->
+<!--            android:layout_width="32dp"-->
+<!--            android:layout_height="32dp"-->
+<!--            android:src="@drawable/google"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:contentDescription="Google Icon" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/googleSignUpText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Signup with Google"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:layout_marginStart="16dp" />-->
+
+<!--    </LinearLayout>-->
+
+</RelativeLayout>

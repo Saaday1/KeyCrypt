@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Profile header section -->
+    <RelativeLayout
+        android:id="@+id/profileHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Profile picture -->
+        <ImageView
+            android:id="@+id/profilePicture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/rabbit" />
+
+        <!-- Full name -->
+        <TextView
+            android:id="@+id/fullNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Muhammad Saad"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/profilePicture"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp" />
+
+        <!-- Username -->
+        <TextView
+            android:id="@+id/usernameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" @saaday"
+            android:textColor="@color/secondary"
+            android:textSize="16sp"
+            android:layout_toEndOf="@id/profilePicture"
+            android:layout_below="@id/fullNameTextView"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Edit profile button -->
+        <Button
+            android:id="@+id/editProfileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:textSize="14sp"
+            android:background="@drawable/secondary_ripple"
+            android:textColor="@android:color/white"
+            android:layout_toEndOf="@id/profilePicture"
+            android:layout_below="@id/usernameTextView"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp" />
+
+    </RelativeLayout>
+
+    <!-- Button slider section -->
+    <RadioGroup
+        android:id="@+id/buttonSliderGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileHeader"
+        android:layout_margin="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <!-- General button -->
+        <RadioButton
+            android:id="@+id/generalButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_slider_general_bg"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="General"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+        <!-- Personal button -->
+        <RadioButton
+            android:id="@+id/personalButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_slider_personal_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Personal"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+    </RadioGroup>
+
+    <!-- General information fragment -->
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonSliderGroup"
+        android:padding="16dp">
+
+        <!-- The fragment will be dynamically added here -->
+
+    </FrameLayout>
+
+</RelativeLayout>

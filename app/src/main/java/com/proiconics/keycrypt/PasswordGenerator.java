@@ -1,9 +1,10 @@
-package com.example.keycrypt;
+package com.proiconics.keycrypt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.proiconics.keycrypt.R;
 import com.google.android.material.slider.RangeSlider;
 
 public class PasswordGenerator extends AppCompatActivity {

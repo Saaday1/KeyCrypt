@@ -13,31 +13,31 @@
         android:theme="@style/Theme.KeyCrypt"
         tools:targetApi="31">
         <activity
-            android:name=".AddRecord"
+            android:name="com.proiconics.keycrypt.AddRecord"
             android:exported="false" />
         <activity
-            android:name=".NotificationsScreen"
+            android:name="com.proiconics.keycrypt.NotificationsScreen"
             android:exported="false" />
         <activity
-            android:name=".SecurityCheck"
+            android:name="com.proiconics.keycrypt.SecurityCheck"
             android:exported="false" />
         <activity
-            android:name=".PasswordGenerator"
+            android:name="com.proiconics.keycrypt.PasswordGenerator"
             android:exported="false" />
         <activity
-            android:name=".profileActivity"
+            android:name="com.proiconics.keycrypt.profileActivity"
             android:exported="false" />
         <activity
-            android:name=".MainScreen"
+            android:name="com.proiconics.keycrypt.MainScreen"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.proiconics.keycrypt.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".RegistrationActivity"
+            android:name="com.proiconics.keycrypt.RegistrationActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.proiconics.keycrypt.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

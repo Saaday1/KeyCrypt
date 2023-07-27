@@ -1,4 +1,4 @@
-package com.example.keycrypt;
+package com.proiconics.keycrypt;
 
 import org.junit.Test;
 

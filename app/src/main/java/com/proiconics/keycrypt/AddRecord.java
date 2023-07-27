@@ -1,4 +1,4 @@
-package com.example.keycrypt;
+package com.proiconics.keycrypt;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.proiconics.keycrypt.R;
 
 public class AddRecord extends AppCompatActivity {
 

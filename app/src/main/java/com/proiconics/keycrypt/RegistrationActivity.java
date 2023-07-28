@@ -22,7 +22,7 @@ import java.util.Map;
 public class RegistrationActivity extends AppCompatActivity {
 
     Button btnLogin, signup;
-    private EditText etEmail, etPassword;
+    private EditText etEmail, etPassword, etName;
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFirestore;
     private ProgressBar progressBar;
@@ -40,6 +40,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         etEmail = findViewById(R.id.emailEditText);
         etPassword = findViewById(R.id.passwordEditText);
+        etName = findViewById(R.id.nameEditText);
         Button btnSignUp = findViewById(R.id.createAccountButton);
         progressBar = findViewById(R.id.progressBar);
 
@@ -70,6 +71,7 @@ public class RegistrationActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString();
+        String name = etName.getText().toString();
 
         // Check for valid email address
         if (!isValidEmail(email)) {
@@ -95,7 +97,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             String userId = user.getUid();
 
                             // Store additional user data in Firestore
-                            storeUserDataInFirestore(userId, email);
+                            storeUserDataInFirestore(userId, email,name);
 
                             // Send email verification
                             sendEmailVerification(user);
@@ -134,10 +136,11 @@ public class RegistrationActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void storeUserDataInFirestore(String userId, String email) {
+    private void storeUserDataInFirestore(String userId, String email,String name) {
         // Create a new user data map
         Map<String, Object> userData = new HashMap<>();
         userData.put("email", email);
+        userData.put("name",name);
 
         // Store user data in Firestore
         mFirestore.collection("Users").document(userId)

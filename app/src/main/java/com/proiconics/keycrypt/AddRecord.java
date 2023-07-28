@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,20 +16,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.proiconics.keycrypt.R;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddRecord extends AppCompatActivity {
 
     private TextView titleTextView;
     private TextView emailTextView;
-    private EditText passwordTitleEditText;
-    private EditText usernameEditText;
+    private EditText passwordTitleEditText, usernameEditText, passwordEditText;
     private ImageView iconImageView;
-    private Button btnSelectIcon;
+    private Button btnSelectIcon, btnSave;
     private AlertDialog recordDialog;
     private ImageView iconFacebook, iconInstagram, iconTiktok, iconLinkedin, iconGithub, iconTwitter;
 
+    private FirebaseFirestore mFirestore;
+    int selectedIconId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,8 @@ public class AddRecord extends AppCompatActivity {
         usernameEditText = findViewById(R.id.usernameEditText);
         iconImageView = findViewById(R.id.iconImageView);
         btnSelectIcon = findViewById(R.id.iconSelectionButton);
+        passwordEditText = findViewById(R.id.passwordEditText);
+        btnSave = findViewById(R.id.saveButton);
 
 
         AlertDialog.Builder DialogBuilder = new AlertDialog.Builder(AddRecord.this);
@@ -62,13 +71,15 @@ public class AddRecord extends AppCompatActivity {
         iconLinkedin = dialogView.findViewById(R.id.iconLinkedin);
         iconGithub = dialogView.findViewById(R.id.iconGithub);
         iconTwitter = dialogView.findViewById(R.id.iconTwitter);
+        // Initialize Firestore instance
+        mFirestore = FirebaseFirestore.getInstance();
 
+        iconImageView.setImageResource(R.drawable.logo);
+        selectedIconId = R.drawable.logo;
         iconFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle the click event for Facebook icon
-                // You can perform any actions or updates here
-                // For example, you can set the selected icon to the above layout's icon
+                selectedIconId = R.drawable.facebook;
                 iconImageView.setImageResource(R.drawable.facebook);
                 recordDialog.dismiss();  // Close the dialog if needed
             }
@@ -77,9 +88,7 @@ public class AddRecord extends AppCompatActivity {
         iconInstagram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle the click event for Instagram icon
-                // You can perform any actions or updates here
-                // For example, you can set the selected icon to the above layout's icon
+                selectedIconId = R.drawable.instagram;
                 iconImageView.setImageResource(R.drawable.instagram);
                 recordDialog.dismiss();  // Close the dialog if needed
             }
@@ -88,9 +97,7 @@ public class AddRecord extends AppCompatActivity {
         iconTiktok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle the click event for Tiktok icon
-                // You can perform any actions or updates here
-                // For example, you can set the selected icon to the above layout's icon
+                selectedIconId = R.drawable.tik_tok;
                 iconImageView.setImageResource(R.drawable.tik_tok);
                 recordDialog.dismiss();  // Close the dialog if needed
             }
@@ -99,9 +106,7 @@ public class AddRecord extends AppCompatActivity {
         iconLinkedin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle the click event for LinkedIn icon
-                // You can perform any actions or updates here
-                // For example, you can set the selected icon to the above layout's icon
+                selectedIconId = R.drawable.linkedin;
                 iconImageView.setImageResource(R.drawable.linkedin);
                 recordDialog.dismiss();  // Close the dialog if needed
             }
@@ -110,9 +115,7 @@ public class AddRecord extends AppCompatActivity {
         iconGithub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle the click event for Github icon
-                // You can perform any actions or updates here
-                // For example, you can set the selected icon to the above layout's icon
+                selectedIconId = R.drawable.github;
                 iconImageView.setImageResource(R.drawable.github);
                 recordDialog.dismiss();  // Close the dialog if needed
             }
@@ -121,9 +124,7 @@ public class AddRecord extends AppCompatActivity {
         iconTwitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle the click event for Twitter icon
-                // You can perform any actions or updates here
-                // For example, you can set the selected icon to the above layout's icon
+                selectedIconId = R.drawable.twitter;
                 iconImageView.setImageResource(R.drawable.twitter);
                 recordDialog.dismiss();  // Close the dialog if needed
             }
@@ -177,7 +178,57 @@ public class AddRecord extends AppCompatActivity {
             }
         });
 
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                savePasswordRecord();
+            }
+        });
+
 
 
     }
+
+    private void savePasswordRecord() {
+        String passwordTitle = passwordTitleEditText.getText().toString().trim();
+        String username = usernameEditText.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
+
+        // Ensure all fields are filled before saving
+        if (TextUtils.isEmpty(passwordTitle) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Create a new user data map
+        Map<String, Object> passwordData = new HashMap<>();
+        passwordData.put("title", passwordTitle);
+        passwordData.put("email", username);
+        passwordData.put("password", password);
+        passwordData.put("iconId", selectedIconId);
+
+        // Store password data in Firestore
+        mFirestore.collection("passwords").document(username)
+                .set(passwordData)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // Password data stored in Firestore successfully
+                        Toast.makeText(this, "Password record saved", Toast.LENGTH_SHORT).show();
+                        // Clear the EditText fields after saving
+                        passwordTitleEditText.setText("");
+                        usernameEditText.setText("");
+                        passwordEditText.setText("");
+                        iconImageView.setImageResource(R.drawable.logo);
+
+                    } else {
+                        // Failed to store password data in Firestore
+                        // Handle the error, e.g., display a toast or dialog
+                        Toast.makeText(this, "Failed to save password record", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+    public void setText(){
+
+    }
+
 }

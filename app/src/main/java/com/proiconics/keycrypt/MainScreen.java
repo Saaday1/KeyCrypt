@@ -1,6 +1,8 @@
 package com.proiconics.keycrypt;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +11,24 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.proiconics.keycrypt.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainScreen extends AppCompatActivity {
 
     ImageView btnProfile, btnPassGeneration, btnSecurityCheck, btnHome, btnNotification;
     LinearLayout bottomNavigationBar;
     FrameLayout floatingButton;
+    private FirebaseFirestore mFirestore;
+    private List<PasswordItem> passwordList;
+    private RecyclerView recyclerView;
+    private PasswordAdapter passwordAdapter;
+    private CollectionReference passwordsCollection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +42,19 @@ public class MainScreen extends AppCompatActivity {
         btnHome = bottomNavigationBar.findViewById(R.id.iconHome);
         floatingButton = findViewById(R.id.floatingButtonContainer);
         btnNotification = findViewById(R.id.notificationIcon);
+        // Initialize Firestore instance and collection reference
+        mFirestore = FirebaseFirestore.getInstance();
+        passwordsCollection = mFirestore.collection("passwords");
+
+        // Initialize the RecyclerView and its adapter
+        recyclerView = findViewById(R.id.passwordsRecyclerView);
+        passwordList = new ArrayList<>();
+        passwordAdapter = new PasswordAdapter(passwordList, this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(passwordAdapter);
+
+        // Query Firestore for password records
+        fetchPasswordRecords();
 
 
 
@@ -74,5 +100,21 @@ public class MainScreen extends AppCompatActivity {
 
 
 
+    }
+    private void fetchPasswordRecords() {
+        // Query Firestore to get password records
+        passwordsCollection.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                passwordList.clear();
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    PasswordItem passwordItem = document.toObject(PasswordItem.class);
+                    passwordList.add(passwordItem);
+                }
+                // Notify the adapter that data has changed
+                passwordAdapter.notifyDataSetChanged();
+            } else {
+                // Handle the error if data fetching fails
+            }
+        });
     }
 }

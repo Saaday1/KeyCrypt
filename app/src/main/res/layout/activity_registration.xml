@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Start for free"
         android:textSize="18dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:textColor="@android:color/darker_gray" />
 
     <!-- Title: Sign up to KeyCypher -->
@@ -95,16 +95,41 @@
         android:textColorHint="@color/primary"
         android:inputType="textPassword" />
 
+    <!-- Name EditText -->
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameTitleTextView"
+        android:background="@drawable/edit_text_bg"
+        android:padding="26dp"
+        android:layout_marginTop="10dp"
+        android:hint="Full Name"
+        android:textSize="16sp"
+        android:textColorHint="@color/primary"
+        android:inputType="textEmailAddress" />
+
     <!-- Email title -->
     <TextView
         android:id="@+id/emailTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/alreadyMember"
-        android:layout_marginTop="36dp"
+        android:layout_below="@id/nameEditText"
+        android:layout_marginTop="20dp"
         android:text="Email"
         android:textStyle="bold"
-        android:textSize="24dp" />
+        android:textSize="20dp" />
+
+    <!-- Name title -->
+    <TextView
+        android:id="@+id/nameTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/alreadyMember"
+        android:layout_marginTop="20dp"
+        android:text="Name"
+        android:textStyle="bold"
+        android:textSize="20dp" />
 
     <!-- Password title -->
     <TextView
@@ -115,18 +140,18 @@
         android:layout_below="@id/emailEditText"
         android:text="Password"
         android:textStyle="bold"
-        android:textSize="24dp" />
+        android:textSize="20dp" />
 
     <!-- Create Account button -->
     <Button
         android:id="@+id/createAccountButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/passwordEditText"
-        android:layout_marginTop="52dp"
         android:text="Create an Account"
         android:background="@drawable/original_button"
         android:padding="15dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
         android:textSize="16dp" />
 
     <ProgressBar

@@ -140,7 +140,7 @@ public class RegistrationActivity extends AppCompatActivity {
         userData.put("email", email);
 
         // Store user data in Firestore
-        mFirestore.collection("users").document(userId)
+        mFirestore.collection("Users").document(userId)
                 .set(userData)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {

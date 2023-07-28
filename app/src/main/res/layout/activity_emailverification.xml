@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Emailverification">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/layout"
+        >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/imageLogo"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verification Email Sent!"
+            android:id="@+id/titleText"
+            android:layout_below="@id/imageLogo"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="verify your email before Sign in"
+            android:id="@+id/textDescription"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/titleText"
+            android:textColor="@color/secondary"
+            />
+
+        <Button
+            android:id="@+id/signInButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textDescription"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/original_button"
+            android:text="Sign in" />
+    </RelativeLayout>
+
+</RelativeLayout>

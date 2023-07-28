@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/custom_circular_progress.xml -->
+<!-- res/drawable/custom_circular_progress_border.xml -->
 <rotate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:fromDegrees="270"
-    android:toDegrees="270">
+    android:fromDegrees="0"
+    android:toDegrees="360">
+    <layer-list>
+        <!-- Background ring -->
+        <item>
+            <shape
+                android:shape="rectangle">
+                <corners android:radius="10dp"/>
+                <size
+                    android:width="48dp"
+                    android:height="48dp" />
+                <solid android:color="@color/secondary" />
+            </shape>
+        </item>
 
-    <shape
-        android:innerRadiusRatio="2.5"
-        android:shape="ring"
-        android:thicknessRatio="25.0">
-        <gradient
-            android:centerColor="#FFC107"
-            android:endColor="#FFC107"
-            android:startColor="#F5F5F5"
-            android:type="sweep"
-            android:useLevel="false" />
-    </shape>
-
+        <!-- Progress bar ring -->
+        <item>
+            <shape
+                android:shape="ring"
+                android:innerRadiusRatio="3"
+                android:thickness="4dp"
+                android:useLevel="true">
+                <size
+                    android:width="48dp"
+                    android:height="48dp" />
+                <gradient
+                    android:startColor="@color/primary"
+                    android:endColor="#8585FD"
+                    android:type="sweep"
+                    android:useLevel="false" />
+            </shape>
+        </item>
+    </layer-list>
 </rotate>
+
+

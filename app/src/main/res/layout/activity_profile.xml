@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:text="Edit Profile"
             android:textSize="14sp"
-            android:background="@drawable/secondary_ripple"
+            android:background="@drawable/original_button"
             android:textColor="@android:color/white"
             android:layout_toEndOf="@id/profilePicture"
             android:layout_below="@id/usernameTextView"
@@ -119,5 +119,18 @@
         <!-- The fragment will be dynamically added here -->
 
     </FrameLayout>
+
+    <Button
+        android:id="@+id/SignoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/original_button"
+        android:text="Sign Out!" />
 
 </RelativeLayout>

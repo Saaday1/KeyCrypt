@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/custom_progress_drawable.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background ring -->
+    <item android:id="@android:id/background">
+        <shape
+            android:shape="ring"
+            android:useLevel="false"
+            android:innerRadiusRatio="2.5"
+            android:thicknessRatio="20.0">
+            <solid android:color="#ECECEC" /> <!-- Replace with your desired color -->
+        </shape>
+    </item>
+
+    <!-- Progress bar ring -->
+    <item android:id="@android:id/progress">
+        <rotate
+            android:fromDegrees="0"
+            android:toDegrees="1080">
+            <shape
+                android:shape="ring"
+                android:useLevel="true"
+                android:innerRadiusRatio="2.5"
+                android:thicknessRatio="20.0">
+                <solid android:color="@color/primary" /> <!-- Replace with your desired progress color -->
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

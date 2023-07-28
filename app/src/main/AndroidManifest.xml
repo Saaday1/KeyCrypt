@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <application
         android:allowBackup="true"
@@ -11,39 +11,48 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KeyCrypt"
-        tools:targetApi="31">
+        tools:targetApi="31" >
         <activity
-            android:name="com.proiconics.keycrypt.AddRecord"
-            android:exported="false" />
-        <activity
-            android:name="com.proiconics.keycrypt.NotificationsScreen"
-            android:exported="false" />
-        <activity
-            android:name="com.proiconics.keycrypt.SecurityCheck"
-            android:exported="false" />
-        <activity
-            android:name="com.proiconics.keycrypt.PasswordGenerator"
-            android:exported="false" />
-        <activity
-            android:name="com.proiconics.keycrypt.profileActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.proiconics.keycrypt.MainScreen"
-            android:exported="false" />
-        <activity
-            android:name="com.proiconics.keycrypt.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.proiconics.keycrypt.RegistrationActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.proiconics.keycrypt.MainActivity"
-            android:exported="true">
+            android:name=".SplashScreen"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Emailverification"
+            android:exported="false" />
+        <activity
+            android:name=".AddRecord"
+            android:exported="false" />
+        <activity
+            android:name=".NotificationsScreen"
+            android:exported="false" />
+        <activity
+            android:name=".SecurityCheck"
+            android:exported="false" />
+        <activity
+            android:name=".PasswordGenerator"
+            android:exported="false" />
+        <activity
+            android:name=".profileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainScreen"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" >
+
         </activity>
     </application>
 

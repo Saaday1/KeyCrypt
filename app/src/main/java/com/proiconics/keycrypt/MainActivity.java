@@ -2,6 +2,7 @@ package com.proiconics.keycrypt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +11,9 @@ import android.widget.Button;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,13 +25,22 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 
 public class MainActivity extends AppCompatActivity {
     private Button getStartedButton, loginTextView;
     private ImageView btnGoogle;
     private RelativeLayout loginButtons;
-    private static final int RC_SIGN_IN = 123;
+    private static final int RC_SIGN_IN = 123; // Request code for Google Sign-In
+    private FirebaseAuth mAuth;
+
+    private ProgressBar progressBar;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +55,12 @@ public class MainActivity extends AppCompatActivity {
         loginTextView = findViewById(R.id.loginTextView);
         loginButtons = findViewById(R.id.loginButtons);
         btnGoogle = loginButtons.findViewById(R.id.btnGoogle);
+        // Initialize FirebaseAuth instance
+        mAuth = FirebaseAuth.getInstance();
 
+        progressBar = findViewById(R.id.progressBarMain);
+
+        progressBar.setVisibility(View.INVISIBLE);
         getStartedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,11 +84,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize GoogleSignInOptions
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
         // Build the GoogleSignInClient with the options above.
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
 
 
         btnGoogle.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, RC_SIGN_IN);
                 Log.d("MainActivity","onActivityResult");
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
 
@@ -90,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.d("MainActivity","onActivityResult, requestcode :"+requestCode);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleGoogleSignInResult(task);
@@ -100,13 +119,28 @@ public class MainActivity extends AppCompatActivity {
     private void handleGoogleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            // Signed in successfully, now you can use the account information
-            // You can extract user information like display name, email, profile photo, etc.
-            startActivity(new Intent(MainActivity.this,MainScreen.class));
+            firebaseAuthWithGoogle(account);
         } catch (ApiException e) {
             // Sign-in failed
             // Handle the error, e.g., display a toast or dialog
         }
+    }
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign-in success, user authenticated with Firebase
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        // Proceed to the main part of your app
+                        startActivity(new Intent(MainActivity.this,MainScreen.class));
+                        progressBar.setVisibility(View.INVISIBLE);
+                        finish();
+                    } else {
+                        // Sign-in failed
+                        // Handle the error, e.g., display a toast or dialog
+                    }
+                });
     }
 
 }

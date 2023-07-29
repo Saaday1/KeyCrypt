@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -76,14 +78,14 @@ public class RegistrationActivity extends AppCompatActivity {
         // Check for valid email address
         if (!isValidEmail(email)) {
             progressBar.setVisibility(View.INVISIBLE);
-            Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_SHORT).show();
+            showToast("Please enter a valid email address");
             return;
         }
 
         // Check for strong password (minimum 6 characters)
         if (!isValidPassword(password)) {
             progressBar.setVisibility(View.INVISIBLE);
-            Toast.makeText(this, "Password must be at least 6 characters long.", Toast.LENGTH_SHORT).show();
+            showToast("Password must be at least 6 characters long");
             return;
         }
 
@@ -106,7 +108,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         // Sign-up failed
                         progressBar.setVisibility(View.INVISIBLE);
                         Log.d("SignUpActivity", "Sign-up Failed: " + task.getException());
-                        Toast.makeText(this, "Sign-up failed. Please try again later.", Toast.LENGTH_SHORT).show();
+                        showToast("Sign-up failed. Please try again later");
                     }
                 });
     }
@@ -154,5 +156,17 @@ public class RegistrationActivity extends AppCompatActivity {
                         // Handle the error, e.g., display a toast or dialog
                     }
                 });
+    }
+    public void showToast(String value){
+        // Java
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast_layout, null);
+        TextView toastText = layout.findViewById(R.id.toastText);
+        toastText.setText(value);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 }

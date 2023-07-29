@@ -7,6 +7,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -154,8 +155,20 @@ public class PasswordGenerator extends AppCompatActivity {
             clipboard.setPrimaryClip(clip);
 
             // Show a toast to indicate that the password has been copied
-            Toast.makeText(this, "Password copied to clipboard", Toast.LENGTH_SHORT).show();
+            showToast("Password copied to clipboard");
         }
+    }
+    public void showToast(String value){
+        // Java
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast_layout, null);
+        TextView toastText = layout.findViewById(R.id.toastText);
+        toastText.setText(value);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 
 }

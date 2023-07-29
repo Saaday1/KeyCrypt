@@ -8,10 +8,12 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Emailverification extends AppCompatActivity {
@@ -54,6 +56,19 @@ public class Emailverification extends AppCompatActivity {
             // If there is no app that can handle the intent, show an error message
             Toast.makeText(this, "Gmail app not installed", Toast.LENGTH_SHORT).show();
         }
+    }
+    public void showToast(String value){
+
+        // Java
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast_layout, null);
+        TextView toastText = layout.findViewById(R.id.toastText);
+        toastText.setText(value);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 
 

@@ -7,9 +7,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -104,7 +106,7 @@ public class profileActivity extends AppCompatActivity {
             // Sign-out is complete
             // Proceed with any additional actions after sign-out (e.g., navigate to the login screen)
             startActivity(new Intent(profileActivity.this,MainActivity.class));
-            Toast.makeText(this, "Signed Out!", Toast.LENGTH_SHORT).show();
+            showToast("Signed Out!");
         });
     }
 
@@ -113,6 +115,19 @@ public class profileActivity extends AppCompatActivity {
         // Sign-out is complete
         // Proceed with any additional actions after sign-out (e.g., navigate to the login screen)
         startActivity(new Intent(profileActivity.this,MainActivity.class));
-        Toast.makeText(this, "Signed Out!", Toast.LENGTH_SHORT).show();
+        showToast("Signed Out!");
+    }
+
+    public void showToast(String value){
+        // Java
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast_layout, null);
+        TextView toastText = layout.findViewById(R.id.toastText);
+        toastText.setText(value);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 }

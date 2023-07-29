@@ -6,12 +6,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.proiconics.keycrypt.R;
@@ -102,19 +110,59 @@ public class MainScreen extends AppCompatActivity {
 
     }
     private void fetchPasswordRecords() {
-        // Query Firestore to get password records
-        passwordsCollection.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                passwordList.clear();
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    PasswordItem passwordItem = document.toObject(PasswordItem.class);
-                    passwordList.add(passwordItem);
-                }
-                // Notify the adapter that data has changed
-                passwordAdapter.notifyDataSetChanged();
-            } else {
-                // Handle the error if data fetching fails
-            }
-        });
+        // Get the current user's ID from your authentication system (e.g., Firebase Authentication)
+        String userId = getCurrentUserId();
+
+        // Query Firestore to get all password records for the current user
+        mFirestore.collection("passwords")
+                .whereEqualTo("userId", userId)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        passwordList.clear();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            PasswordItem passwordItem = document.toObject(PasswordItem.class);
+                            passwordList.add(passwordItem);
+                        }
+                        // Notify the adapter that data has changed
+                        passwordAdapter.notifyDataSetChanged();
+                    } else {
+                        // Handle the error if data fetching fails
+                        // For example, you can show an error message or log the error
+                    }
+                });
+    }
+
+
+
+
+    // Inside your activity or fragment
+    private String getCurrentUserId() {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            return currentUser.getUid();
+        } else {
+            // User is not signed in or there is an error, handle it accordingly
+            // For example, you can return an empty string or show an error message
+            return "";
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    public void showToast(String value){
+        // Java
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast_layout, null);
+        TextView toastText = layout.findViewById(R.id.toastText);
+        toastText.setText(value);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 }

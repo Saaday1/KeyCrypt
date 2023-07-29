@@ -7,4 +7,11 @@
     <color name="secondary">#8E8E8E</color>
     <color name="lightGrey">#E2E2E2</color>
     <color name="google">#69BFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="yellow">#FFBF00</color>
+    <color name="green">#26FF00</color>
+    <color name="progress_bar_background_color">#E0E0E0</color>
+    <color name="progress_bar_green_color">#00FF00</color>
+    <color name="progress_bar_yellow_color">#FFFF00</color>
+    <color name="progress_bar_red_color">#FF0000</color>
 </resources>

@@ -41,10 +41,18 @@ public class PasswordAdapter extends RecyclerView.Adapter<PasswordAdapter.ViewHo
 
         // Set a click listener on the password item
         holder.itemView.setOnClickListener(v -> {
-            // Get the password of the clicked item
-            String password = passwordItem.getPassword();
-            // Copy the password to the clipboard
-            copyToClipboard(password);
+            // Get the encrypted password of the clicked item
+            String encryptedPassword = passwordItem.getPassword();
+
+            // Prompt the user to enter the encryption key (you can use a dialog for this)
+            String encryptionKey = "keycryptencryption"; // Replace with the user-entered encryption key
+
+            // Decrypt the password
+            String decryptedPassword = passwordItem.getDecryptedPassword(encryptionKey);
+
+            // Copy the decrypted password to the clipboard
+            copyToClipboard(decryptedPassword);
+
             // Show a toast to indicate the password is copied
             Toast.makeText(context, "Password copied to clipboard", Toast.LENGTH_SHORT).show();
         });

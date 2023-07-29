@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -24,6 +25,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.proiconics.keycrypt.R;
 
+import org.cryptonode.jncryptor.AES256JNCryptor;
+import org.cryptonode.jncryptor.CryptorException;
+
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -229,38 +234,54 @@ public class AddRecord extends AppCompatActivity {
                 return;
             }
 
-            // Create a new user data map
-            Map<String, Object> passwordData = new HashMap<>();
-            passwordData.put("userId", userId);
-            passwordData.put("title", passwordTitle);
-            passwordData.put("email", username);
-            passwordData.put("password", password);
-            passwordData.put("iconId", selectedIconId);
+            // Encrypt the password using AES
+            try {
+                byte[] passwordBytes = password.getBytes("UTF-8");
+                AES256JNCryptor cryptor = new AES256JNCryptor();
+                byte[] encryptedPassword = cryptor.encryptData(passwordBytes, "keycryptencryption".toCharArray());
 
-            // Store password data in Firestore with a timestamp as the document name
-            mFirestore.collection("passwords")
-                    .add(passwordData)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            // Password data stored in Firestore successfully
-                            showToast("Password saved");
-                            // Clear the EditText fields after saving
-                            passwordTitleEditText.setText("");
-                            usernameEditText.setText("");
-                            passwordEditText.setText("");
-                            iconImageView.setImageResource(R.drawable.logo);
+                // Convert the encrypted password to a Base64 string for storage in Firestore
+                String encryptedPasswordBase64 = Base64.encodeToString(encryptedPassword, Base64.DEFAULT);
 
-                        } else {
-                            // Failed to store password data in Firestore
-                            // Handle the error, e.g., display a toast or dialog
-                            showToast("Failed to save password record");
-                        }
-                    });
+                // Create a new user data map with the encrypted password
+                Map<String, Object> passwordData = new HashMap<>();
+                passwordData.put("userId", userId);
+                passwordData.put("title", passwordTitle);
+                passwordData.put("email", username);
+                passwordData.put("password", encryptedPasswordBase64); // Save the encrypted password
+                passwordData.put("iconId", selectedIconId);
+
+                // Store password data in Firestore with a timestamp as the document name
+                mFirestore.collection("passwords")
+                        .add(passwordData)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                // Password data stored in Firestore successfully
+                                showToast("Password saved");
+                                // Clear the EditText fields after saving
+                                passwordTitleEditText.setText("");
+                                usernameEditText.setText("");
+                                passwordEditText.setText("");
+                                iconImageView.setImageResource(R.drawable.logo);
+
+                            } else {
+                                // Failed to store password data in Firestore
+                                // Handle the error, e.g., display a toast or dialog
+                                showToast("Failed to save password record");
+                            }
+                        });
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                showToast("Error encrypting password");
+            } catch (CryptorException e) {
+                throw new RuntimeException(e);
+            }
         } else {
             // User is not logged in or authenticated
             // Handle the case where the user ID is not available or prompt the user to log in
         }
     }
+
 
     public void showToast(String value){
         // Java

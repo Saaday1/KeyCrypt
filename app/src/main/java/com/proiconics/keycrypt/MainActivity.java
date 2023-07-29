@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +32,10 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private ProgressBar progressBar;
+    private FirebaseFirestore mFirestore;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -59,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         btnGoogle = loginButtons.findViewById(R.id.btnGoogle);
         // Initialize FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
+        // Initialize Firestore instance
+        mFirestore = FirebaseFirestore.getInstance();
 
         progressBar = findViewById(R.id.progressBarMain);
 
@@ -134,8 +142,29 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Sign-in success, user authenticated with Firebase
                         FirebaseUser user = mAuth.getCurrentUser();
+
+                        // Get the user's name
+                        String userName = user.getDisplayName();
+
+                        // Get the user's email address
+                        String userEmail = user.getEmail();
+
+                        // Get the user's profile photo URL (if available)
+                        Uri userProfilePhotoUrl = user.getPhotoUrl();
+
+                        // Check if the user already exists in Firebase Authentication
+                        boolean isNewUser = task.getResult().getAdditionalUserInfo().isNewUser();
+
+                        if (isNewUser) {
+                            // User is new, create a new user in Firestore and store the data
+                            createUserInFirestore(user.getUid(), userName, userEmail, userProfilePhotoUrl);
+                        } else {
+                            // User already exists, update the user's profile data
+                            updateUserDataInFirestore(user.getUid(), userName, userEmail, userProfilePhotoUrl);
+                        }
+                        showToast("Welcome to Key Crypt");
                         // Proceed to the main part of your app
-                        startActivity(new Intent(MainActivity.this,MainScreen.class));
+                        startActivity(new Intent(MainActivity.this, MainScreen.class));
                         progressBar.setVisibility(View.INVISIBLE);
                         finish();
                     } else {
@@ -144,6 +173,58 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void createUserInFirestore(String userId, String userName, String userEmail, Uri userProfilePhotoUrl) {
+        // Create a new user data map
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("name", userName);
+        userData.put("email", userEmail);
+
+        // If the user has a profile photo URL, store it in Firestore
+        if (userProfilePhotoUrl != null) {
+            userData.put("profilePhotoUrl", userProfilePhotoUrl.toString());
+        }
+
+        // Store user data in Firestore
+        mFirestore.collection("Users").document(userId)
+                .set(userData)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // User data stored in Firestore successfully
+                        // You can add any additional logic here, if needed
+                    } else {
+                        // Failed to store user data in Firestore
+                        // Handle the error, e.g., display a toast or dialog
+                    }
+                });
+    }
+
+    private void updateUserDataInFirestore(String userId, String userName, String userEmail, Uri userProfilePhotoUrl) {
+        // Create a new user data map
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("name", userName);
+        userData.put("email", userEmail);
+
+        // If the user has a profile photo URL, update it in Firestore
+        if (userProfilePhotoUrl != null) {
+            userData.put("profilePhotoUrl", userProfilePhotoUrl.toString());
+        }
+
+        // Update user data in Firestore
+        mFirestore.collection("Users").document(userId)
+                .update(userData)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // User data updated in Firestore successfully
+                        // You can add any additional logic here, if needed
+                    } else {
+                        // Failed to update user data in Firestore
+                        // Handle the error, e.g., display a toast or dialog
+                    }
+                });
+    }
+
+
     public void showToast(String value){
         // Java
         LayoutInflater inflater = getLayoutInflater();

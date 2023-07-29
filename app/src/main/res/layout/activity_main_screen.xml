@@ -14,16 +14,15 @@
         android:padding="16dp"
         android:background="@drawable/categories_bg">
 
-        <!-- Profile picture -->
-        <ImageView
+
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileImageView"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/rabbit"
-            android:scaleType="centerCrop"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp" />
+            android:src="@drawable/rabbit"
+            android:layout_marginEnd="16dp"  />
 
         <RelativeLayout
             android:id="@+id/welcome"
@@ -36,8 +35,8 @@
                 android:id="@+id/welcomeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome back!"
-                android:textSize="16sp"
+                android:text="Welcome!"
+                android:textSize="14sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="8dp" />
 
@@ -47,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Person's Name"
-                android:textSize="20sp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:layout_below="@id/welcomeTextView" />
         </RelativeLayout>
@@ -82,166 +81,168 @@
 
     </RelativeLayout>
 
-<!--    <RelativeLayout-->
-<!--        android:id="@+id/securityCardView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@id/topBarLayout"-->
-<!--        android:gravity="center_vertical"-->
-<!--        android:layout_margin="16dp"-->
-<!--        android:padding="10dp"-->
-<!--        android:background="@drawable/gradient_bg">-->
+    <RelativeLayout
+        android:id="@+id/securityCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBarLayout"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/gradient_bg"
+        android:gravity="center_vertical"
+        android:padding="10dp">
 
-<!--        &lt;!&ndash; RelativeLayout content &ndash;&gt;-->
-<!--        <LinearLayout-->
-<!--            android:id="@+id/securityText"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:padding="16dp"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            android:layout_marginLeft="20dp"-->
-<!--            android:orientation="vertical">-->
+        <!-- RelativeLayout content -->
+        <LinearLayout
+            android:id="@+id/securityText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-<!--            <TextView-->
-<!--                android:id="@+id/securityInfoTextView"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Security Info"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:layout_marginBottom="8dp" />-->
+            <TextView
+                android:id="@+id/securityInfoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Total Apps"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:text="54 Apps"-->
-<!--                />-->
+            <TextView
+                android:id="@+id/totalAppsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="54 Apps"
+                android:textColor="@color/white" />
 
-<!--        </LinearLayout>-->
+        </LinearLayout>
 
-<!--        <ProgressBar-->
-<!--            android:id="@+id/roundProgressBar"-->
-<!--            android:layout_width="70dp"-->
-<!--            android:layout_height="70dp"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:layout_marginRight="20dp"-->
-<!--            android:layout_marginBottom="20dp"-->
-<!--            android:indeterminate="false"-->
-<!--            android:max="100"-->
-<!--            android:progress="50"-->
-<!--            android:progressDrawable="@drawable/round_progress_bar" />-->
-
-
-<!--    </RelativeLayout>-->
+        <!--        <ProgressBar-->
+        <!--            android:id="@+id/roundProgressBar"-->
+        <!--            android:layout_width="70dp"-->
+        <!--            android:layout_height="70dp"-->
+        <!--            android:layout_alignParentRight="true"-->
+        <!--            android:layout_marginStart="20dp"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:layout_marginEnd="20dp"-->
+        <!--            android:layout_marginRight="20dp"-->
+        <!--            android:layout_marginBottom="20dp"-->
+        <!--            android:indeterminate="false"-->
+        <!--            android:max="100"-->
+        <!--            android:progress="50"-->
+        <!--            android:progressDrawable="@drawable/round_progress_bar" />-->
 
 
-<!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/filters"-->
-<!--        android:layout_below="@id/securityCardView"-->
-<!--        android:layout_marginLeft="20dp"-->
-<!--        android:layout_marginRight="20dp"-->
-<!--        >-->
+        <!--    </RelativeLayout>-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/txtCategories"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Categories"-->
-<!--            android:textSize="18dp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:layout_margin="10dp"-->
-<!--            />-->
-<!--        <LinearLayout-->
-<!--            android:layout_below="@id/txtCategories"-->
-<!--            android:id="@+id/filterAll"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center"-->
-<!--            android:background="@drawable/list_item"-->
-<!--            android:padding="5dp"-->
-<!--            >-->
-<!--            <ImageView-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:src="@drawable/select_all"-->
-<!--                />-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="All"-->
-<!--                android:textStyle="bold"-->
-<!--                android:layout_marginRight="5dp"-->
-<!--                />-->
-<!--        </LinearLayout>-->
-<!--        <LinearLayout-->
-<!--            android:layout_below="@id/txtCategories"-->
-<!--            android:id="@+id/filterLogin"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_toRightOf="@id/filterAll"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:background="@drawable/list_item"-->
-<!--            android:padding="5dp"-->
-<!--            >-->
-<!--            <ImageView-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:src="@drawable/login"-->
-<!--                android:padding="6dp"-->
-<!--                />-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Log in"-->
-<!--                android:textStyle="bold"-->
-<!--                android:layout_marginRight="5dp"-->
-<!--                />-->
-<!--        </LinearLayout>-->
-<!--        <LinearLayout-->
-<!--            android:layout_below="@id/txtCategories"-->
-<!--            android:id="@+id/filterCard"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_toRightOf="@id/filterLogin"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:background="@drawable/list_item"-->
-<!--            android:padding="5dp"-->
-<!--            >-->
-<!--            <ImageView-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:src="@drawable/credit_card"-->
-<!--                android:padding="5dp"-->
-<!--                />-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="cards"-->
-<!--                android:layout_marginLeft="6dp"-->
-<!--                android:layout_marginRight="5dp"-->
-<!--                android:textStyle="bold"-->
-<!--                />-->
-<!--        </LinearLayout>-->
 
-<!--    </RelativeLayout>-->
+        <!--    <RelativeLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:id="@+id/filters"-->
+        <!--        android:layout_below="@id/securityCardView"-->
+        <!--        android:layout_marginLeft="20dp"-->
+        <!--        android:layout_marginRight="20dp"-->
+        <!--        >-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/txtCategories"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Categories"-->
+        <!--            android:textSize="18dp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:layout_margin="10dp"-->
+        <!--            />-->
+        <!--        <LinearLayout-->
+        <!--            android:layout_below="@id/txtCategories"-->
+        <!--            android:id="@+id/filterAll"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:gravity="center"-->
+        <!--            android:background="@drawable/list_item"-->
+        <!--            android:padding="5dp"-->
+        <!--            >-->
+        <!--            <ImageView-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:src="@drawable/select_all"-->
+        <!--                />-->
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="All"-->
+        <!--                android:textStyle="bold"-->
+        <!--                android:layout_marginRight="5dp"-->
+        <!--                />-->
+        <!--        </LinearLayout>-->
+        <!--        <LinearLayout-->
+        <!--            android:layout_below="@id/txtCategories"-->
+        <!--            android:id="@+id/filterLogin"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_toRightOf="@id/filterAll"-->
+        <!--            android:gravity="center_vertical"-->
+        <!--            android:layout_marginLeft="10dp"-->
+        <!--            android:background="@drawable/list_item"-->
+        <!--            android:padding="5dp"-->
+        <!--            >-->
+        <!--            <ImageView-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:src="@drawable/login"-->
+        <!--                android:padding="6dp"-->
+        <!--                />-->
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="Log in"-->
+        <!--                android:textStyle="bold"-->
+        <!--                android:layout_marginRight="5dp"-->
+        <!--                />-->
+        <!--        </LinearLayout>-->
+        <!--        <LinearLayout-->
+        <!--            android:layout_below="@id/txtCategories"-->
+        <!--            android:id="@+id/filterCard"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_toRightOf="@id/filterLogin"-->
+        <!--            android:gravity="center_vertical"-->
+        <!--            android:layout_marginLeft="10dp"-->
+        <!--            android:background="@drawable/list_item"-->
+        <!--            android:padding="5dp"-->
+        <!--            >-->
+        <!--            <ImageView-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:src="@drawable/credit_card"-->
+        <!--                android:padding="5dp"-->
+        <!--                />-->
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="cards"-->
+        <!--                android:layout_marginLeft="6dp"-->
+        <!--                android:layout_marginRight="5dp"-->
+        <!--                android:textStyle="bold"-->
+        <!--                />-->
+        <!--        </LinearLayout>-->
+
+    </RelativeLayout>
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/passwordsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/topBarLayout"
+        android:layout_below="@id/securityCardView"
         android:layout_marginBottom="50dp"
-        android:padding="16dp"
+        android:padding="10dp"
         android:clipToPadding="false"
         android:background="@color/primaryLight"
         tools:listitem="@layout/password_item_layout" />
@@ -342,5 +343,15 @@
             app:tint="@android:color/white" />
 
     </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBarMain"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/round_progress_bar"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="50" />
 
 </RelativeLayout>

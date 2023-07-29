@@ -8,13 +8,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashScreen extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -27,10 +27,8 @@ public class SplashScreen extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         // Delay the splash screen for 2 seconds (adjust the delay as needed)
-        new Handler().postDelayed(() -> {
-            // Check user authentication status
-            checkUserAuthentication();
-        }, 2000); // 2-second delay
+        // Check user authentication status
+        new Handler().postDelayed(this::checkUserAuthentication, 2000); // 2-second delay
 
     }
     private void checkUserAuthentication() {
@@ -49,7 +47,7 @@ public class SplashScreen extends AppCompatActivity {
     public void showToast(String value){
         // Java
         LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.custom_toast_layout, null);
+        @SuppressLint("InflateParams") View layout = inflater.inflate(R.layout.custom_toast_layout, null);
         TextView toastText = layout.findViewById(R.id.toastText);
         toastText.setText(value);
 
